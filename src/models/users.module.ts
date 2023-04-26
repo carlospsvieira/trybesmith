@@ -1,13 +1,21 @@
-// import { ResultSetHeader } from 'mysql2';
-// import { Product } from '../types/Product';
-// import connection from './connection';
+import { ResultSetHeader } from 'mysql2';
+import connection from './connection';
+import { User } from '../types/User';
 
-// async function insertUser(name: string, amount: string): Promise<Product> {
-//   const [{ insertId: id }] = await connection.execute<ResultSetHeader>(
-//     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
-//     [name, amount],
-//   );
+async function insertUser(
+  username: string,
+  vocation: string,
+  level: number,
+  password: string,
+): Promise<User> {
+  const [row] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
+    [username, vocation, level, password],
+  );
 
-//   const product = { id, name, amount };
-//   return product;
-// }
+  console.log(row);
+  
+  return row as unknown as User;
+}
+
+export default insertUser;
