@@ -1,11 +1,9 @@
 import { createPool } from 'mysql2/promise';
 
 const connection = createPool({
-  host: 'db',
-  port: 3306,
-  user: 'root',
-  password: 'password',
-  database: 'Trybesmith',
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  host: process.env.MYSQL_HOST,
 });
 
 export default connection;
