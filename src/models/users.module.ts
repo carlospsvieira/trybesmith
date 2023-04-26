@@ -12,8 +12,6 @@ async function insertUser(
     'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
     [username, vocation, level, password],
   );
-
-  console.log(row);
   
   return row as unknown as User;
 }
